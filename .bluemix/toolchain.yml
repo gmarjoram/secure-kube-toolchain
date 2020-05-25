@@ -77,5 +77,6 @@ form:
     parameters:
       app-name: '{{services.repo.parameters.repo_name}}'
       prod-cluster-namespace: prod
+      api-key: '{vault::kp-secrets.pipeline-api-key}'
     schema:
       $ref: deploy.json
