@@ -11,6 +11,7 @@ template:
   required:
     - build
     - repo
+    - kpsecrets
   info:
     git url: >
       "[" + $env.repository + "]" +
@@ -62,6 +63,15 @@ services:
         execute: true
   webide:
     service_id: orion
+  kpsecrets:
+    service_id: keyprotect
+    parameters:
+      name: kp-secrets
+      region: ibm:yp:us-south
+      resource-group: default
+      instance-name: kp-dal-2
+  sauce:
+    service_id: saucelabs
 form:
   pipeline:
     parameters:
