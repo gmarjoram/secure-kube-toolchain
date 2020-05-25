@@ -11,7 +11,7 @@ template:
   required:
     - build
     - repo
-    - kpsecrets
+    - hvsecrets
   info:
     git url: >
       "[" + $env.repository + "]" +
@@ -63,13 +63,15 @@ services:
         execute: true
   webide:
     service_id: orion
-  kpsecrets:
-    service_id: keyprotect
+  hvsecrets:
+    service_id: hashicorpvault
     parameters:
-      name: kp-secrets
-      region: ibm:yp:us-south
-      resource-group: default
-      instance-name: kp-dal-2
+      name: hv-secrets
+      server_url: 'https://vserv-test.sos.ibm.com:8200'
+      dashboard_url: 'https://vserv-test.sos.ibm.com:8200/ui'
+      path: 'generic/project/otc-setup'
+      secret_filter: 'marjoram-'
+      authentication_method: approle
   sauce:
     service_id: saucelabs
 form:
@@ -77,6 +79,6 @@ form:
     parameters:
       app-name: '{{services.repo.parameters.repo_name}}'
       prod-cluster-namespace: prod
-      api-key: '{vault::kp-secrets.pipeline-api-key}'
+      api-key: '{vault::hv-secrets.marjoram-pipeline-api-key.marjoram-pipeline-api-key}'
     schema:
       $ref: deploy.json
