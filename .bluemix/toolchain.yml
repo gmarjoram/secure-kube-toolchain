@@ -79,6 +79,5 @@ form:
     parameters:
       app-name: '{{services.repo.parameters.repo_name}}'
       prod-cluster-namespace: prod
-      api-key: '{vault::hv-secrets.marjoram-pipeline-api-key.marjoram-pipeline-api-key}'
     schema:
       $ref: deploy.json
