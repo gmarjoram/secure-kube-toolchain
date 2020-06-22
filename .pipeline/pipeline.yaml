@@ -49,6 +49,8 @@ spec:
           value: $(params.revision)
         - name: pipeline-debug
           value: $(params.pipeline-debug)
+        - name: ibmcloud-api
+          value: "https://dev.console.test.cloud.ibm.com"
       workspaces:
         - name: output
           workspace: pipeline-ws
